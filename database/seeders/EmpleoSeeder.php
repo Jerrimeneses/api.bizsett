@@ -19,7 +19,7 @@ class EmpleoSeeder extends Seeder
 
         $empleo = new Empleo();
 
-        $empleo->evidencia ="documento.pdf";
+        $empleo->evidencia ="1663008045_Informe técnico.pdf";
         $empleo->mensaje_trabajo ="quisiera postularme para el puesto de...";
         $empleo->emprendimiento_id ="1";
         $empleo->user_id ="4";

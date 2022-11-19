@@ -22,8 +22,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(TiponotificacioneSeeder::class);
 
-        $this->call(GeneroSeeder::class);
-
         $this->call(DepartamentoSeeder::class);
 
         $this->call(CiudadeSeeder::class);
@@ -33,8 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EmprendimientoSeeder::class);
 
        $this->call(PublicacioneSeeder::class);
-
-       $this->call(MultimediaSeeder::class);
 
        $this->call(InversionistaSeeder::class);
 

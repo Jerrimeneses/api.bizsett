@@ -14,7 +14,7 @@ class Genero extends Model
     use HasFactory;
     
     public function users(){
-        return $this->hasMany('App\Models\User');
+        return $this->hasMany(User::class);
     }
 
 

@@ -13,15 +13,12 @@ class Follower extends Model
     use HasFactory;
 
     public function user(){
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     public function emprendimiento(){
-        return $this->belongsTo('App\Models\Emprendimiento');
+        return $this->belongsTo(Emprendimiento::class);
     }
-
-
-
 
 
     protected $allowIncluded=['emprendimiento', 'user'];

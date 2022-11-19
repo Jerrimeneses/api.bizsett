@@ -16,19 +16,11 @@ class Publicacione extends Model
 
 
     public function emprendimiento(){
-        return $this->belongsTo('App\Models\Emprendimiento');
+        return $this->belongsTo(Emprendimiento::class);
     }
-
-    // public function multimedia(){
-    //     return $this->hasMany('App\Models\Multimedia');
-    // }
 
     public function reacciones(){
-        return $this->hasMany('App\Models\Reaccione');
-    }
-
-    public function multimedias(){
-        return $this->morphMany('App\Models\Multimedia', 'multimediaable');
+        return $this->hasMany(Reaccione::class);
     }
 
     public function comentarios(){
@@ -38,7 +30,7 @@ class Publicacione extends Model
     
 
 
-    protected $allowIncluded=['emprendimiento', 'emprendimiento.user', 'reacciones', 'comentarios', 'reacciones.user'];
+    protected $allowIncluded=['emprendimiento', 'emprendimiento.user', 'reacciones', 'comentarios.user', 'reacciones.user'];
 
     protected $allowFilter=['id', 'descripcion'];
 
@@ -104,7 +96,7 @@ class Publicacione extends Model
         foreach ($sortFields as $sortField) {
             
             if ($allowSort->contains($sortField)) {
-                $query->orderBy($sortField,'asc');
+                $query->orderBy($sortField,'desc');
                }
         }
     }

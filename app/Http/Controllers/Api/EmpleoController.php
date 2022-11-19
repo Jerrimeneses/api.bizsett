@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Empleo;
+use App\Models\Emprendimiento;
 use Illuminate\Http\Request;
 
 class EmpleoController extends Controller
@@ -30,8 +31,29 @@ class EmpleoController extends Controller
      */
     public function store(Request $request)
     {
-        $empleo=Empleo::create($request->all());
-        return $empleo;
+        $empleo = new Empleo();
+        $empleo['evidencia'] = time() . '_' . $request->file(key: 'evidencia')->getClientOriginalName();
+        $request->file(key: 'evidencia')->storeAs(path:'public/pdf_folder', name: $empleo['evidencia']);
+        $empleo->mensaje_trabajo = $request->mensaje_trabajo;
+        $empleo->emprendimiento_id = $request->emprendimiento_id;
+        $empleo->user_id = $request->user_id;
+        $empleo->save();
+
+        return redirect('http://localhost/bizsett/public/empleos');
+    }
+
+    public function crear(Request $request, $user, $emprendimiento)
+    {
+        
+        $empleo = new Empleo();
+        $empleo['evidencia'] = time() . '_' . $request->file(key: 'evidencia')->getClientOriginalName();
+        $request->file(key: 'evidencia')->storeAs(path:'public/pdf_folder', name: $empleo['evidencia']);
+        $empleo->mensaje_trabajo = $request->mensaje_trabajo;
+        $empleo->emprendimiento_id = $emprendimiento;
+        $empleo->user_id = $user;
+        $empleo->save();
+
+        return redirect('http://localhost/bizsett/public/cuenta/'.$emprendimiento);
     }
 
     /**
@@ -55,9 +77,17 @@ class EmpleoController extends Controller
      */
     public function update(Request $request, Empleo $empleo)
     {
-        $empleo->update($request->all());
-        return $empleo;
+        $empleo['evidencia'] = time() . '_' . $request->file(key: 'evidencia')->getClientOriginalName();
+        $request->file(key: 'evidencia')->storeAs(path:'public/pdf_folder', name: $empleo['evidencia']);
+        $empleo->mensaje_trabajo = $request->mensaje_trabajo;
+        $empleo->emprendimiento_id = $request->emprendimiento_id;
+        $empleo->user_id = $request->user_id;
+        $empleo->save();
+
+        return redirect('http://localhost/bizsett/public/empleos');
     }
+
+   
 
     /**
      * Remove the specified resource from storage.

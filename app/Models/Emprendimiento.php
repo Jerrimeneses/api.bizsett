@@ -13,26 +13,30 @@ class Emprendimiento extends Model
     protected $guarded = [];
 
     public function user(){
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
+    }
+
+    public function ciudade(){
+        return $this->belongsTo(Ciudade::class);
     }
 
     public function inversionistas(){
-        return $this->hasMany('App\Models\Inversionista');
+        return $this->hasMany(Inversionista::class);
     }
 
     public function empleos(){
-        return $this->hasMany('App\Models\Empleo');
+        return $this->hasMany(Empleo::class);
     }
 
     public function publicaciones(){
-        return $this->hasMany('App\Models\Publicacione');
+        return $this->hasMany(Publicacione::class);
     }
     
     public function followers(){
-        return $this->hasMany('App\Models\Follower');
+        return $this->hasMany(Follower::class);
     }
 
-    protected $allowIncluded=['user', 'publicaciones', 'followers', 'empleos', 'inversionistas', 'followers.user'];
+    protected $allowIncluded=['user', 'ciudade', 'publicaciones', 'followers', 'empleos', 'inversionistas', 'followers.user'];
 
     protected $allowFilter=['id', 'nombre_emprendimiento', 'clasificacion', 'descripcion'];
 

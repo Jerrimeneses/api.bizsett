@@ -17,10 +17,11 @@ return new class extends Migration
         Schema::create('publicaciones', function (Blueprint $table) {
             $table->id();
             $table->text('descripcion')->nullable();
+            $table->string('imagen')->nullable();
             $table->unsignedBigInteger('emprendimiento_id')->nullable();
 
             $table->foreign('emprendimiento_id')->references('id')->on('emprendimientos')
-                ->onDelete('set null');
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

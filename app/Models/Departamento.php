@@ -15,7 +15,7 @@ class Departamento extends Model
     protected $guarded = [];
 
     public function ciudades(){
-        return $this->hasMany('App\Models\Ciudade');
+        return $this->hasMany(Ciudade::class);
     }
 
 

@@ -12,17 +12,17 @@ class Ciudade extends Model
 
     use HasFactory;
 
-    public function users(){
-        return $this->hasMany('App\Models\User');
+    public function emprendimientos(){
+        return $this->hasMany(Emprendimiento::class);
     }
 
     public function departamento(){
-        return $this->belongsTo('App\Models\Departamento');
+        return $this->belongsTo(Departamento::class);
     }
 
 
 
-    protected $allowIncluded=['departamento', 'users'];
+    protected $allowIncluded=['departamento', 'emprendimientos'];
 
 
     protected $allowFilter=['id', 'nombre_ciudad'];

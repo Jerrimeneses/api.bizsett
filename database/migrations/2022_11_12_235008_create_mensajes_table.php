@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('generos', function (Blueprint $table) {
+        Schema::create('mensajes', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_genero');
+            $table->text('mensaje');
+            $table->string('multimedia');
+            $table->unsignedBigInteger('user_id')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('set null');
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('generos');
+        Schema::dropIfExists('mensajes');
     }
 };

@@ -18,15 +18,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'email',
-        'password',
-        'nombre',
-        'apellidos',
-        'telefono',
-        'numero_documento',
-        'direccion',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -47,20 +39,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function user(){
-        return $this->hasOne('App\Models\User');
-    }
-
     public function notificaciones(){
-        return $this->hasMany('App\Models\Notificacione');
+        return $this->hasMany(Notificacione::class);
     }
 
     public function chats(){
-        return $this->hasMany('App\Models\Chat');
+        return $this->hasMany(Chat::class);
     }
 
     public function buzons(){
-        return $this->hasMany('App\Models\Buzon');
+        return $this->hasMany(Buzon::class);
     }
 
     public function emprendimiento(){
@@ -68,40 +56,33 @@ class User extends Authenticatable
     }
 
     public function comentarios(){
-        return $this->hasMany('App\Models\Comentario');
+        return $this->hasMany(Comentario::class);
     }
 
     public function reacciones(){
-        return $this->hasMany('App\Models\Reaccione');
+        return $this->hasMany(Reaccione::class);
     }
 
     public function tipodocumento(){
-        return $this->belongsTo('App\Models\Tipodocumento');
-    }
-
-    public function ciudade(){
-        return $this->belongsTo('App\Models\Ciudade');
+        return $this->belongsTo(Tipodocumento::class);
     }
 
     public function tipopersona(){
-        return $this->belongsTo('App\Models\Tipopersona');
-    }
-
-    public function genero(){
-        return $this->belongsTo('App\Models\Genero');
+        return $this->belongsTo(Tipopersona::class);
     }
 
     public function inversionistas(){
-        return $this->hasMany('App\Models\Inversionista');
+        return $this->hasMany(Inversionista::class);
     }
 
     public function empleos(){
-        return $this->hasMany('App\Models\Empleo');
+        return $this->hasMany(Empleo::class);
     }
 
     public function followers(){
-        return $this->hasMany('App\Models\Follower');
+        return $this->hasMany(Follower::class);
     }
+
 
 
     public function setPasswordAttribute($password){
@@ -113,11 +94,9 @@ class User extends Authenticatable
                                 'emprendimiento.user', 
                                 'followers', 
                                 'empleos', 
-                                'inversionistas', 
-                                'genero', 
+                                'inversionistas',
                                 'tipopersona', 
-                                'ciudade', 
-                                'tipodocumento'  ];
+                                'tipodocumento',  ];
 
     protected $allowFilter=['email',
                             'password',

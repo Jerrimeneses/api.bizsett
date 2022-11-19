@@ -15,13 +15,19 @@ return new class extends Migration
     {
         Schema::create('emprendimientos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_emprendimiento');
-            $table->string('clasificacion');
+            $table->string('nombre');
+            $table->string('categoria');
             $table->text('descripcion');
+            $table->bigInteger('telefono')->nullable();
+            $table->string('direccion')->nullable();
+            $table->unsignedBigInteger('ciudade_id')->nullable();
             $table->unsignedBigInteger('user_id')->unique();
 
             $table->foreign('user_id')->references('id')->on('users')
-            ->onDelete('cascade')->onUpdate('cascade');
+                ->onDelete('cascade')->onUpdate('cascade');
+
+            $table->foreign('ciudade_id')->references('id')->on('ciudades')
+                ->onDelete('set null');
             $table->timestamps();
         });
     }

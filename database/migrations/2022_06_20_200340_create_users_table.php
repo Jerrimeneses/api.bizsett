@@ -20,23 +20,13 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('nombre');
             $table->string('apellidos');
-            $table->bigInteger('telefono');
             $table->bigInteger('numero_documento');
-            $table->string('direccion');
             $table->unsignedBigInteger('tipodocumento_id')->nullable();
-            $table->unsignedBigInteger('ciudade_id')->nullable();
-            $table->unsignedBigInteger('genero_id')->nullable();
             $table->unsignedBigInteger('tipopersona_id')->nullable();
             $table->string('foto_perfil')->nullable();
             $table->timestamp('email_verified_at')->nullable();
 
             $table->foreign('tipodocumento_id')->references('id')->on('tipodocumentos')
-                ->onDelete('set null');
-
-            $table->foreign('ciudade_id')->references('id')->on('ciudades')
-                ->onDelete('set null');
-
-            $table->foreign('genero_id')->references('id')->on('generos')
                 ->onDelete('set null');
 
             $table->foreign('tipopersona_id')->references('id')->on('tipopersonas')

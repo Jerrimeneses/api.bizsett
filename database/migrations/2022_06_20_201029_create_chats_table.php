@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
-            $table->text('mensaje');
-            $table->text('Contenido_url');
+            $table->unsignedBigInteger('sala')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')

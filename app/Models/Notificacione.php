@@ -12,11 +12,11 @@ class Notificacione extends Model
 
     use HasFactory;
     public function tiponotificacione(){
-        return $this->belongsTo('App\Models\Tiponotificacione');
+        return $this->belongsTo(Tiponotificacione::class);
     }
 
     public function user(){
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
 

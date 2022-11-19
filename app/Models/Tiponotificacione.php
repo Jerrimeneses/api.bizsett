@@ -13,7 +13,7 @@ class Tiponotificacione extends Model
     protected $guarded = [];
 
     public function notificaciones(){
-        return $this->hasMany('App\Models\Notificacione');
+        return $this->hasMany(Notificacione::class);
     }
 
 
